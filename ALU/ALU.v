@@ -135,6 +135,46 @@ module ALU(DATA1, DATA2, RESULT, SELECT, ZERO, SIGN_BIT, SLTU_BIT):
 endmodule
 
 
+module ALU_TESTBENCH();
+
+    reg [31:0] DATA1, DATA2;
+    reg [4:0] SELECT;
+    wire [31:0] RESULT;
+    wire ZERO, SIGN, SLTU;
+
+    ALU ALU_TEST(DATA1, DATA2, RESULT, SELECT, ZERO, SIGN, SLTU);
+        initial
+        begin
+            $monitor("DATA1: %b,DATA2: %b,SELECT: %b,RESULT: %b",DATA1,DATA2,SELECT,RESULT);
+        end
+
+        initial
+        begin
+            DATA1 = 32'd30;
+            DATA2 = 32'd35;
+            SELECT = 8'b00000000;
+            #5
+            $display("Test 1 passed");
+            SELECT = 8'b00000001;
+            #5
+            $display("Test 2 paassed");
+            SELECT = 8'b00000010;
+            #5 
+            $display ("Test 3 passed");
+            SELECT = 8'b00000011;
+            #5 
+            $display ("Test 4 passed");
+            SELECT = 8'b00000100;
+            #5 
+            $display ("Test 5 passed");
+            
+        end
+
+
+endmodule
+
+
+
 /*multiplication higher signed * signed
 For example, if you multiply a signed variable with a 4-bit width by another signed variable with a 3-bit width, 
 the result will be a signed variable with a bit width of 7 (4 + 3).However, if both operands have the same bit width, 
