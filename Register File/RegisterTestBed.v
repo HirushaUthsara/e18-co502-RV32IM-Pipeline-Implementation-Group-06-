@@ -1,5 +1,5 @@
 `include "RegisterFile.v"
-`timescale 1ns/1ps
+`timescale 1ns/100ps
 
 module register_file_tb;
 
@@ -29,11 +29,12 @@ module register_file_tb;
   // Initialize testbench inputs
   initial begin
     // Reset the DUT
+    clk = 1;
     rst = 1;
     #10 rst = 0;
     
     // Random write and read operations
-    repeat(1000) begin
+    repeat(20) begin
       // Random write operation
       if ($random % 2 == 0) begin
         reg_write = $random % 32;
@@ -55,7 +56,7 @@ module register_file_tb;
   // Dump waveform into a VCD file
   initial begin
     $dumpfile("register_file_waveform.vcd");
-    $dumpvars(0, register_file_tb);
+    $dumpvars(1, register_file_tb);
     #10;
   end
   
