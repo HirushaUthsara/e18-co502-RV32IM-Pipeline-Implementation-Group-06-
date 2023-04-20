@@ -16,7 +16,7 @@ module IMMEDIATE_GEN(INSTRUCTION, SELECT, OUT);
     assign COMB3 = INSTRUCTION[31:20];
     assign COMB4 = {INSTRUCTION[31:25], INSTRUCTION[11:7]};
     assign COMB5 = {INSTRUCTION[31:25], INSTRUCTION[11:7]};
-    assign COMB6 = INSTRUCTION[19:25];
+    assign COMB6 = INSTRUCTION[29:25];
 
 
 // getting output values relevent to the combination value

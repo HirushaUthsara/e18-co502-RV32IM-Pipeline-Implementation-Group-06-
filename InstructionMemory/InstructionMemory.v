@@ -1,3 +1,5 @@
+//timescale directive sets the base time unit and precision for the simulation. In this example, it sets the base time unit to 
+//1 nanosecond and the precision to 100 picoseconds. 
 `timescale 1ns/100ps
 
 module INSTRUCTION_MEMORY(CLOCK, READ, ADDRESS, READDATA, BUSYWAIT);
