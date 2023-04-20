@@ -1,13 +1,31 @@
 `timescale 1ns/100ps
 
 
+// module for the control unit
 module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SELECT,MEMREAD, MEMWRITE, BRANCH, JUMP, WRITEENABLE, ALUOP, IMME_SELECT);
+
+
+    // Inputs
+    // INSTRUCTION: 32-bit instruction word
+    
+    // Outputs
+    // ALUOP: 5-bit signal to control the ALU operation
+    // MUX3_SELECT: 2-bit signal to select input for MUX3
+    // IMME_SELECT: 3-bit signal to select type of immediate value
+    // MUX1_SELECT: 1-bit signal to select input for MUX1
+    // MUX2_SELECT: 1-bit signal to select input for MUX2
+    // MUX4_SELECT: 1-bit signal to select input for MUX4
+    // MEMREAD: 1-bit signal to enable memory read
+    // MEMWRITE: 1-bit signal to enable memory write
+    // BRANCH: 1-bit signal to enable branching
+    // JUMP: 1-bit signal to enable jumping
+    // WRITEENABLE: 1-bit signal to enable register writeback
 
     input [31:0] INSTRUCTION;
     output [4:0] ALUOP;
     output [1:0] MUX3_SELECT;
     output [2:0] IMME_SELECT;
-    output MUX1_SELECT, MUX2_SELECT,MUX4_SELECT,MEMREAD, MEMWRITE, BRANCH, JUMP, WRITEENABLE, ALUOP;
+    output MUX1_SELECT, MUX2_SELECT,MUX4_SELECT,MEMREAD, MEMWRITE, BRANCH, JUMP, WRITEENABLE;
 
     wire [6:0] OPCODE;
     wire [2:0] FUNCTION3;
@@ -19,13 +37,16 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
     reg [3:0] INTSTRUCTION_TYPE;
     reg [4:0] ALUOP;
 
-
+// Assign signals from instruction word
     assign OPCODE = INSTRUCTION [6:0];
     assign FUNCTION3 = INSTRUCTION [14:12];
     assign FUNCTION7A = INSTRUCTION[30];
     assign FUNCTION7B = INSTRUCTION[25];
 
-    // Genaral control signals
+    // Generating control signals
+
+
+    // considering the general control signals
     always @(OPCODE) begin
         case(OPCODE)
             8'b00000000:begin   //nop instruction
@@ -172,7 +193,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
     end
 
 
-    // specific control signals
+    // considering specific control signals
     assign SPECIALOP = {FUNCTION7A, FUNCTION7B, FUNCTION3, INSTRUCTION_TYPE};
     always @(*) begin
         #1
@@ -209,7 +230,8 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
             end
 
 
-            // I type load and store type opcodes
+            // I type load and store type control signals
+
             9'bxxxxx0101: begin         //Load instructions
                 ALUOP = 8'b00000000;
             end
@@ -274,7 +296,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 ALUOP = 8'b00000010;
             end
 
-            // ALUOP for the M type instructions
+            // M type instyructions control signals
             9'b011011000: begin         //MUL
                 ALUOP = 8'b00001000;
             end
