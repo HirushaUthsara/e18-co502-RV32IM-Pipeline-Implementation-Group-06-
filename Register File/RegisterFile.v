@@ -5,6 +5,7 @@ module register_file (
     input [4:0] read2,
     output reg [31:0] read_data1,
     output reg [31:0] read_data2,
+    input writeenable,
     input clk,
     input rst
 );
@@ -19,9 +20,11 @@ always @(posedge clk) begin
             regs[i] <= 0;
         end
     end else begin
-        // Write to register file
-        if (reg_write != 0) begin
-            regs[reg_write] <= write_data;
+        // Write to register file if write enable is asserted
+        if (writeenable) begin
+            if (reg_write != 0) begin
+                regs[reg_write] <= write_data;
+            end
         end
         
         // Read from register file
