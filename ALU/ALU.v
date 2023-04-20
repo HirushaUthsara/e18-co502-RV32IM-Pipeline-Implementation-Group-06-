@@ -168,75 +168,7 @@ module ALU_TESTBENCH();
             #5 
             $display ("Test 5 passed");
 
-             // Test addition operation
-        //     DATA1 = 32'd10;
-        //     DATA2 = 32'd20;
-        //     SELECT = 8'b00000000;
-        //     #5
-        //     if (RESULT !== 32'd30) $display("Test 1 failed");
 
-        //     // Test subtraction operation
-        //     DATA1 = 32'd30;
-        //     DATA2 = 32'd10;
-        //     SELECT = 8'b00000001;
-        //     #5
-        //     if (RESULT !== 32'd20) $display("Test 2 failed");
-
-        //     // Test bitwise AND operation
-        //     DATA1 = 32'b11110000;
-        //     DATA2 = 32'b00001111;
-        //     SELECT = 8'b00000010;
-        //     #5
-        //     if (RESULT !== 32'b00000000) $display("Test 3 failed");
-
-        //     // Test bitwise OR operation
-        //     DATA1 = 32'b11110000;
-        //     DATA2 = 32'b00001111;
-        //     SELECT = 8'b00000011;
-        //     #5
-        //     if (RESULT !== 32'b11111111) $display("Test 4 failed");
-
-        //     // Test bitwise XOR operation
-        //     DATA1 = 32'b11110000;
-        //     DATA2 = 32'b00001111;
-        //     SELECT = 8'b00000100;
-        //     #5
-        //     if (RESULT !== 32'b11111111) $display("Test 5 failed");
-        
-        //     // Test left shift operation
-        //     DATA1 = 32'd10;
-        //     DATA2 = 5'd2;
-        //     SELECT = 8'b00000101;
-        //     #5
-        //     if (RESULT !== 32'd40) $display("Test 6 failed");
-        
-        //     // Test right shift operation
-        //     DATA1 = 32'd100;
-        //     DATA2 = 5'd2;
-        //     SELECT = 8'b00000110;
-        //     #5
-        //     if (RESULT !== 32'd25) $display("Test 7 failed");
-        
-        //     // Test signed right shift operation
-        //     DATA1 = 32'sd-100;
-        //     DATA2 = 5'd2;
-        //     SELECT = 8'b00000111;
-        //     #5
-        //     if (RESULT !== 32'sd-25) $display("Test 8 failed");
-        
-        //     // Test multiplication operation
-        //     DATA1 = 32'd100;
-        //     DATA2 = 32'd20;
-        //     SELECT = 8'b00001000;
-        //     #5
-        //     if (RESULT !== 32'd2000) $display("Test 9 failed");
-        
-        //     // Test signed multiplication operation
-        //     DATA1 = 32'sd-10;
-        //     DATA2 = 32'sd-20;
-        //     SELECT = 8'b00001001;
-        //     #5
-        //     if (RESULT !== 32'd200) $display("Test 10 failed");
             
         end
 

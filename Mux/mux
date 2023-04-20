@@ -1,0 +1,37 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 10;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_010A87F8 .scope module, "MUX_A" "MUX_A" 2 4;
+ .timescale -9 -10;
+v010A7C10_0 .net "INPUT1", 0 0, C4<z>; 0 drivers
+v010A3950_0 .net "INPUT2", 0 0, C4<z>; 0 drivers
+v010A39A8_0 .net "OUT", 0 0, L_010AE190; 1 drivers
+v010A3A00_0 .net "SELECT", 0 0, C4<z>; 0 drivers
+L_010AE190 .functor MUXZ 1, C4<z>, C4<z>, C4<z>, C4<>;
+S_010A8EE0 .scope module, "MUX_B" "MUX_B" 2 14;
+ .timescale -9 -10;
+v010A2FA0_0 .net "INPUT1", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010A2FF8_0 .net "INPUT2", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010A3050_0 .net "INPUT3", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010A30A8_0 .net "OUT", 31 0, L_010AE898; 1 drivers
+v010ADF28_0 .net "SELECT", 1 0, C4<zz>; 0 drivers
+v010ADF80_0 .net *"_s1", 0 0, L_010AE528; 1 drivers
+v010ADFD8_0 .net *"_s10", 31 0, L_010AE790; 1 drivers
+v010AE030_0 .net *"_s3", 0 0, L_010AE420; 1 drivers
+v010AE088_0 .net *"_s4", 31 0, C4<xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx>; 1 drivers
+v010AE0E0_0 .net *"_s6", 31 0, L_010AE5D8; 1 drivers
+v010AE138_0 .net *"_s9", 0 0, L_010AE478; 1 drivers
+L_010AE528 .part C4<zz>, 1, 1;
+L_010AE420 .part C4<zz>, 0, 1;
+L_010AE5D8 .functor MUXZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>, C4<xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx>, L_010AE420, C4<>;
+L_010AE478 .part C4<zz>, 0, 1;
+L_010AE790 .functor MUXZ 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>, L_010AE478, C4<>;
+L_010AE898 .functor MUXZ 32, L_010AE790, L_010AE5D8, L_010AE528, C4<>;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "MUX.v";
