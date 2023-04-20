@@ -1,11 +1,12 @@
 `timescale 1ns/100ps
 
 
-module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SELECT,MEMREAD, MEMWRITE, BRANCH, JUMP, WRITEENABLE, ALUOP);
+module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SELECT,MEMREAD, MEMWRITE, BRANCH, JUMP, WRITEENABLE, ALUOP, IMME_SELECT);
 
     input [31:0] INSTRUCTION;
     output [4:0] ALUOP;
     output [1:0] MUX3_SELECT;
+    output [2:0] IMME_SELECT;
     output MUX1_SELECT, MUX2_SELECT,MUX4_SELECT,MEMREAD, MEMWRITE, BRANCH, JUMP, WRITEENABLE, ALUOP;
 
     wire [6:0] OPCODE;
@@ -14,7 +15,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
     reg [1:0] MUX3_SELECT;
     reg MUX1_SELECT, MUX2_SELECT,MUX4_SELECT,MEMREAD, MEMWRITE, BRANCH, JUMP, WRITEENABLE, ALUOP;
     wire [8:0] SPECIALOP;
-    reg [2:0] IMMEDIATE_SELECT;
+    reg [2:0] IMMEDIATE_SELECT, IMME_SELECT;
     reg [3:0] INTSTRUCTION_TYPE;
     reg [4:0] ALUOP;
 
@@ -39,6 +40,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b0;
                 JUMP = 1'b0;
+                IMME_SELECT = 3'bxxx;
             end
             8'b00110011:begin   //R type instructions
                 #1
@@ -52,6 +54,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b0;
                 JUMP = 1'b0;
+                IMME_SELECT = 3'bxxx;
             end
             8'b00010011:begin   //I type instructions
                 #1
@@ -65,6 +68,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b0;
                 JUMP = 1'b0;
+                IMME_SELECT = 3'b010;
             end
             8'b00100011:begin   //S type instructions
                 #1
@@ -78,6 +82,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b1;
                 BRANCH = 1'b0;
                 JUMP = 1'b0;
+                IMME_SELECT = 3'b001;
             end
             8'b00000011:begin   //I type instructions
                 #1
@@ -91,6 +96,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b0;
                 JUMP = 1'b0;
+                IMME_SELECT = 3'b001;
             end
             8'b01100011:begin   //B type instructions
                 #1
@@ -104,6 +110,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b1;
                 JUMP = 1'b0;
+                IMME_SELECT = 3'b000;
             end
             8'b01100111:begin   //jalr type instructions
                 #1
@@ -117,6 +124,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b0;
                 JUMP = 1'b1;
+                IMME_SELECT = 3'b100;
             end
             8'b01101111:begin   //jal type instructions
                 #1
@@ -130,6 +138,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b0;
                 JUMP = 1'b1;
+                IMME_SELECT = 3'b100;
             end
             8'b00010111:begin   //u type instructions
                 #1
@@ -143,6 +152,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b0;
                 JUMP = 1'b0;
+                IMME_SELECT = 3'b011;
             end
             8'b00110111:begin   //u type instructions
                 #1
@@ -156,6 +166,7 @@ module CONTROL_UNIT(INSTRUCTION, MUX1_SELECT, MUX2_SELECT, MUX3_SELECT, MUX4_SEL
                 MEMWRITE = 1'b0;
                 BRANCH = 1'b0;
                 JUMP = 1'b0;
+                IMME_SELECT = 3'b011; 
             end
         endcase 
     end
