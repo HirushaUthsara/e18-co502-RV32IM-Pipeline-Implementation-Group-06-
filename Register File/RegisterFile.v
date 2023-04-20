@@ -23,13 +23,13 @@ always @(posedge clk) begin
         // Write to register file if write enable is asserted
         if (writeenable) begin
             if (reg_write != 0) begin
-                regs[reg_write] <= write_data;
+                #1 regs[reg_write] <= write_data;
             end
         end
         
         // Read from register file
-        read_data1 <= regs[read1];
-        read_data2 <= regs[read2];
+        #2 read_data1 <= regs[read1];
+        #2 read_data2 <= regs[read2];
     end
 end
 
