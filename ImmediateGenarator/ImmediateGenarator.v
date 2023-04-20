@@ -10,6 +10,7 @@ module IMMEDIATE_GEN(INSTRUCTION, SELECT, OUT);
     wire [11:0] COMB3, COMB4, COMB5;
     wire [4:0] TYPE6;
 
+// getting commbination values to create immediate values
     assign COMB1 = INSTRUCTION[31:12];
     assign COMB2 = INSTRUCTION[31:12];
     assign COMB3 = INSTRUCTION[31:20];
@@ -17,6 +18,8 @@ module IMMEDIATE_GEN(INSTRUCTION, SELECT, OUT);
     assign COMB5 = {INSTRUCTION[31:25], INSTRUCTION[11:7]};
     assign COMB6 = INSTRUCTION[19:25];
 
+
+// getting output values relevent to the combination value
     always @(*) begin
         case(SELECT[2:0])
         3'b000:
