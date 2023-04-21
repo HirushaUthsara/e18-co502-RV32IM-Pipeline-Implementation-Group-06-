@@ -1,6 +1,6 @@
 `timescale 1ns/100ps
 
-// mux for the mux1,mux2 and mux4 in datapath
+// mux for the mux1,mux2 and mux4 in datapath, pcmux
 module MUX_A(INPUT1, INPUT2, OUT, SELECT);
 
     input INPUT1, INPUT2, SELECT;
