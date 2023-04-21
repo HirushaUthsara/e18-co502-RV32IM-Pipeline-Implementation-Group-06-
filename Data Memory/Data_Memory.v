@@ -86,7 +86,7 @@ module DATA_MEMORY(CLOCK,
         begin
             if(RESET) // if RESET signal is 1
             begin
-            for(i=0; i<256; i++)
+            for(i=0; i<256; i=i+1)
                 MEM_ARRAY[i] = 0; // set each memory location to 0
 
             READACESS = 0; // reset the READ access control signal to 0 
