@@ -1,3 +1,5 @@
+`timescale 1ns/100ps
+
 module register_file (
     input [4:0] reg_write,
     input [31:0] write_data,

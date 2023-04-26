@@ -34,7 +34,7 @@ module register_file_tb;
     #10 rst = 0;
     
     // Random write and read operations
-    repeat(20) begin
+    repeat(32) begin
       // Random write operation
       if ($random % 2 == 0) begin
         reg_write = $random % 32;
