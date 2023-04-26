@@ -6,7 +6,8 @@ module PC(CLOCK, RESET, NEXTPC, PC);
 // Declare inputs and outputs of the module
     input CLOCK, RESET;
     input [31:0] NEXTPC;
-    input [31:0] PC;
+    output [31:0] PC;
+    reg PC;
 
 // Initialize the PC to start at address 0 when the reset input is triggered
     always @(RESET) begin
