@@ -49,7 +49,7 @@ module BRANCH_JUMP(RESET,                   // reset signal
     end
 
     always @(*) begin
-        #2  // tyhis delay is used for specifies the time taken for a signal to be updated in a register or flip-flop. In this case, 
+        #2  // this delay is used for specifies the time taken for a signal to be updated in a register or flip-flop. In this case, 
             //the delay of 2 nanoseconds is used to ensure that the output signal is updated after the input signals are stable.
         if(JUMP==1'b1)begin
             BRANCH_JUMP_OUT = ALU_JUMP_IMM;
