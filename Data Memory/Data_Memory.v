@@ -8,14 +8,14 @@ module DATA_MEMORY(CLOCK,
                     ADDRESS,
                     WRITEDATA,
                     READDATA
-                    //BUSYWAIT 
+                    BUSYWAIT 
                     );
 // Declare input and output ports
         input CLOCK, RESET, READ, WRITE;
         input [27:0] ADDRESS;
         input [127:0] WRITEDATA;
         output reg [127:0] READDATA;
-        //output reg  BUSYWAIT;
+        output reg  BUSYWAIT;
 
 // Declare a memory array of size 256, 128 bits wide
         reg [127:0] MEM_ARRAY [255:0];
@@ -26,7 +26,7 @@ module DATA_MEMORY(CLOCK,
 // Combinational logic block to assign values to control signals based on input signals
         always @(READ, WRITE)
         begin
-            //BUSYWAIT = (READ || WRITE)? 1:0;
+            BUSYWAIT = (READ || WRITE)? 1:0;     // set busywait signal to high
             READACESS = (READ && !WRITE)? 1:0; // Set READACESS to 1 if READ input is asserted and WRITE input is deasserted
             WRITEACESS = (!READ && WRITE)? 1:0; // Set WRITEACESS to 1 if WRITE input is asserted and READ input is deasserted
         end 
@@ -54,6 +54,7 @@ module DATA_MEMORY(CLOCK,
                 READDATA[119:112] = #40 MEM_ARRAY[{ADDRESS,4'b1110}];
                 READDATA[127:120] = #40 MEM_ARRAY[{ADDRESS,4'b1111}];
                 READACESS =0;// Deassert read access flag
+                BUSYWAIT = 0;// Deassert busywait signal
             end  
 
             if(WRITEACESS)// If it's a write access
@@ -76,6 +77,7 @@ module DATA_MEMORY(CLOCK,
                 MEM_ARRAY[{ADDRESS,4'b1110}] = #40 WRITEDATA[119:112];
                 MEM_ARRAY[{ADDRESS,4'b1111}] = #40 WRITEDATA[127:120];
                 WRITEACESS = 0;// Deassert write access flag
+                BUSYWAIT = 0;// Deassert busywait signal
             end  
         end
 
