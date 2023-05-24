@@ -1,61 +1,100 @@
 `timescale 1ns/100ps
 
-module data_cache (
-  input clk,             // clock signal
-  input rst,             // reset signal
-  input [31:0] addr,     // memory address
-  input [31:0] din,      // input data
-  input wr_en,           // write enable signal
-  input [1:0] cache_en,  // cache enable signal
-  input busywait,        // busywait signal from the CPU
-  output [31:0] dout     // output data
+module DATA_CACHE(
+  input wire clk,
+  input wire reset,
+  input wire enable,
+  input wire [31:0] address,
+  input wire [31:0] writeData,
+  input wire writeEnable,
+  output wire [31:0] readData
 );
 
-  // Parameters
-  parameter CACHE_SIZE = 32;  // Size of the cache
-  parameter LINE_SIZE = 4;    // Size of each cache line
-  
-  // Variables
-  reg [31:0] cache [CACHE_SIZE-1:0];  // Cache array
-  reg [1:0] valid [CACHE_SIZE/LINE_SIZE-1:0];  // Valid bit array
-  reg [1:0] dirty [CACHE_SIZE/LINE_SIZE-1:0];  // Dirty bit array
-  reg [31:0] tag [CACHE_SIZE/LINE_SIZE-1:0];   // Tag array
-  
-  // Internal signals
-  wire hit;     // Cache hit signal
-  wire [31:0] data_out;  // Data output from cache
-  
-  // Calculate the index and tag for the given memory address
-  wire [5:0] index = addr[CACHE_SIZE_LOG2-1:LOG2_LINE_SIZE];
-  wire [31:6] tag_bits = addr[CACHE_SIZE_LOG2-1:LOG2_LINE_SIZE+6];
-  
-  // Check if the memory address is a cache hit or miss
-  assign hit = valid[index] && (tag[index] == tag_bits);
-  
-  // Output the data from the cache if there is a hit, otherwise access the data memory
-  assign dout = hit ? data_out : (busywait ? dout : mem_read(addr));
-  
-  // Read data from the cache
-  assign data_out = cache[index + (addr[LOG2_LINE_SIZE-1:2] & (LINE_SIZE-1))];
-  
-  // Write data to the cache
+  parameter CACHE_SIZE = 1024;  // Size of the cache in bytes
+  parameter BLOCK_SIZE = 32;    // Size of each cache block in bytes
+  parameter NUM_BLOCKS = CACHE_SIZE / BLOCK_SIZE;  // Number of cache blocks
+  parameter INDEX_WIDTH = $clog2(NUM_BLOCKS);     // Width of the cache index
+
+  reg [31:0] cache [0:NUM_BLOCKS-1];  // Cache data storage
+  reg [31:0] tags [0:NUM_BLOCKS-1];   // Tags for each cache block
+  reg [INDEX_WIDTH-1:0] index;        // Cache index for address mapping
+
+  wire hit;           // Cache hit signal
+  wire [31:0] hitData; // Data read from cache on a hit
+
+  // Memory write signal for each cache block
+  reg [NUM_BLOCKS-1:0] dirty;
+
+  // Sequential logic for cache read and write operations
   always @(posedge clk) begin
-    if (wr_en && cache_en) begin
-      cache[index + (addr[LOG2_LINE_SIZE-1:2] & (LINE_SIZE-1))] <= din;
-      valid[index] <= 2'b11;
-      dirty[index] <= 2'b10;
-      tag[index] <= tag_bits;
-    end
-  end
-  
-  // Write back dirty cache lines to memory
-  always @(posedge clk) begin
-    for (integer i = 0; i < CACHE_SIZE/LINE_SIZE; i = i + 1) begin
-      if (dirty[i] == 2'b10) begin
-        mem_write(tag[i], cache[i*LINE_SIZE +: LINE_SIZE]);
-        dirty[i] <= 2'b01;
+    if (reset) begin
+      // Reset cache and tags
+      cache <= 0;
+      tags <= 0;
+      dirty <= 0;
+    end else if (enable) begin
+      // Calculate cache index
+      index <= address[(INDEX_WIDTH + BLOCK_SIZE - 1):BLOCK_SIZE];
+
+      // Check for cache hit
+      hit = (tags[index] == address[(INDEX_WIDTH + BLOCK_SIZE - 1):BLOCK_SIZE]);
+
+      if (hit) begin
+        // Read from cache on hit
+        readData <= hitData;
+        
+        if (writeEnable) begin
+          // Write data to cache
+          cache[index] <= writeData;
+          dirty[index] <= 1;
+        end
+      end else begin
+        // Cache miss, fetch data from memory
+        // Read data from memory and update cache
+        readData <= memory_read(address);
+
+        if (writeEnable) begin
+          // Write data to cache
+          cache[index] <= writeData;
+          tags[index] <= address[(INDEX_WIDTH + BLOCK_SIZE - 1):BLOCK_SIZE];
+          dirty[index] <= 1;
+        end
       end
     end
   end
-  
+
+  // Write-back logic
+  always @(posedge clk) begin
+    if (reset) begin
+      // Reset dirty flags
+      dirty <= 0;
+    end else if (enable) begin
+      if (!hit && dirty[index]) begin
+        // Write dirty block back to memory
+        memory_write(tags[index] + (address & (BLOCK_SIZE - 1)), cache[index]);
+        dirty[index] <= 0;
+      end
+    end
+  end
+
+  // Memory read simulation
+  function automatic logic [31:0] memory_read;
+    input logic [31:0] addr;
+    begin
+      // Simulate memory read operation
+      // Replace this with actual memory read code
+      memory_read = 0; // Placeholder value
+    end
+  endfunction
+
+  // Memory write simulation
+  function automatic logic memory_write;
+    input logic [31:0] addr;
+    input logic [31:0] data;
+    begin
+      // Simulate memory write operation
+      // Replace this with actual memory write code
+    end
+  endfunction
+
 endmodule
