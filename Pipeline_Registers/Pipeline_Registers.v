@@ -23,7 +23,7 @@ module PIPEREG1(CLK,
 // pipeline register operates on the positive edge of the clock signal
     always @(posedge CLK) begin
         #3
-        if(!busywait)begin
+        if(!BUSYWAIT)begin
             // assigning output values
             PCOUT_NEXT <= NEXTPC;
             PCOUT <= PC;
@@ -87,7 +87,7 @@ module PIPEREG2(CLK, RESET, BUSYWAIT,
             BRANCH, JUMP, MUX1_SELECT, INSTHIT;
 
 // defining the output ports
-    output reg [31:0] PC_OUT, NEXTPC_OUT, DATA1_OUT, DATA2_OUT, BRANCH_ADD_OUT;
+    output reg [31:0] PC_OUT, NEXTPC_OUT, DATA1_OUT, DATA2_OUT, BRANCH_ADD_OUT, IMMGEN_OUT;
     output reg [4:0]  DESREG_OUT,  ALUOP_OUT;
     output reg [2:0]  FUNCT_OUT;
     output reg [1:0]  MUX3_OUT;
@@ -113,14 +113,14 @@ module PIPEREG2(CLK, RESET, BUSYWAIT,
             BRANCH_OUT      <=  BRANCH;
             JUMP_OUT        <=  JUMP;
             MUX1_OUT        <=  MUX1_SELECT;
-            INSTHIT_OUT     <=  INSHIT;
+            INSTHIT_OUT     <=  INSTHIT;
         end
     end
 
 // resetting the insstruction hit signal
     always @(posedge CLK) begin
         if(RESET == 1'b1)begin
-            INSHITOUT <=0;
+            INSTHIT_OUT <=0;
         end
     end
 
@@ -202,7 +202,7 @@ module PIPEREG4(CLK, RESET,
                 
                 INSHIT,
                 
-                DESREG_OUT, WRITEENABLE_OUT, MUX3_OUT, ALU_OUT, DATAMEM_OUT, INSTHIT_OUT);
+                DESREG_OUT, WRITEENABLE_OUT, MUX4_OUT, ALU_OUT, DATAMEM_OUT, INSTHIT_OUT);
 
 // defining the input ports
     input [31:0] DATAMEMOUT, ALUOUT;
@@ -210,7 +210,7 @@ module PIPEREG4(CLK, RESET,
     input CLK, RESET, WRITEENABLE, MUX4_SELECT, INSHIT;
 
 // defining the output ports
-    output reg [31:0] ALU_OUT, DATAMEM_OUT, INSTHIT_OUT;
+    output reg [31:0] ALU_OUT, DATAMEM_OUT;
     output reg [4:0] DESREG_OUT;
     output reg  WRITEENABLE_OUT, MUX4_OUT, INSTHIT_OUT;
 
@@ -229,7 +229,7 @@ module PIPEREG4(CLK, RESET,
 // resetting the instruction out value
     always @(posedge CLK)begin
         if(RESET == 1'b1)begin
-            INSHITOUT <= 0;
+            INSTHIT_OUT <= 0;
         end
     end 
 
