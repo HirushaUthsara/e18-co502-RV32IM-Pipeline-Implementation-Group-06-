@@ -7,7 +7,7 @@ module INSTRUCTION_MEMORY(CLOCK, READ, ADDRESS, READDATA);
 input CLOCK, READ;
 input [27:0] ADDRESS;
 output reg[127:0] READDATA;
-//output reg BUSYWAIT;
+output reg BUSYWAIT;
 
 reg READACCESS;
 
@@ -15,7 +15,7 @@ reg [7:0] MEM_ARRAY [1023:0];
 
 initial
 begin
-    //BUSYWAIT = 0;
+    BUSYWAIT = 0;
     READACCESS = 0;
 
     {MEM_ARRAY[32'd03], MEM_ARRAY[32'd02], MEM_ARRAY[32'd01], MEM_ARRAY[32'd00]} <= 32'b10001111000100001000000010010011;           
@@ -45,7 +45,7 @@ always @(posedge CLOCK) begin
          READDATA[111:104] = #40 MEM_ARRAY[{ADDRESS,4'b1101}];
          READDATA[119:112] = #40 MEM_ARRAY[{ADDRESS,4'b1110}];
          READDATA[127:120] = #40 MEM_ARRAY[{ADDRESS,4'b1111}];
-         //BUSYWAIT = 0;
+         BUSYWAIT = 0;
          READACCESS = 0;
     end
 end
