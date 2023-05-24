@@ -7,7 +7,7 @@ module DATA_MEMORY(CLOCK,
                     WRITE, 
                     ADDRESS,
                     WRITEDATA,
-                    READDATA
+                    READDATA,
                     BUSYWAIT 
                     );
 // Declare input and output ports
