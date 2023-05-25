@@ -1,0 +1,306 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 10;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_010EA978 .scope module, "PIPEREG1" "PIPEREG1" 2 4;
+ .timescale -9 -10;
+v010EB990_0 .net "BUSYWAIT", 0 0, C4<z>; 0 drivers
+v010EB8D0_0 .net "CLK", 0 0, C4<z>; 0 drivers
+v010EB810_0 .net "INSHIT", 0 0, C4<z>; 0 drivers
+v010EEE30_0 .var "INSHITOUT", 0 0;
+v010E4BF8_0 .var "INSTROUT", 31 0;
+v010E4C50_0 .net "INSTRUCTION", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v00FE5A98_0 .net "NEXTPC", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v00FE5AF0_0 .net "PC", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v00FE5B48_0 .var "PCOUT", 31 0;
+v010EE848_0 .var "PCOUT_NEXT", 31 0;
+v010EE8A0_0 .net "RESET", 0 0, C4<z>; 0 drivers
+E_00FD3698 .event posedge, v010EB8D0_0;
+S_010EA428 .scope module, "PIPEREG2" "PIPEREG2" 2 48;
+ .timescale -9 -10;
+v010EE8F8_0 .net "ALUOP", 4 0, C4<zzzzz>; 0 drivers
+v010E4698_0 .var "ALUOP_OUT", 4 0;
+v010E46F0_0 .net "BRANCH", 0 0, C4<z>; 0 drivers
+v010E4748_0 .net "BRANCH_ADD", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010E3338_0 .var "BRANCH_ADD_OUT", 31 0;
+v010E3390_0 .var "BRANCH_OUT", 0 0;
+v00FE1010_0 .net "BUSYWAIT", 0 0, C4<z>; 0 drivers
+v00FE0F60_0 .net "CLK", 0 0, C4<z>; 0 drivers
+v00FE1170_0 .net "DATA1", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v00FE1430_0 .var "DATA1_OUT", 31 0;
+v00FE1068_0 .net "DATA2", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v00FE0E00_0 .var "DATA2_OUT", 31 0;
+v00FE10C0_0 .net "DESREG", 4 0, C4<zzzzz>; 0 drivers
+v00FE0FB8_0 .var "DESREG_OUT", 4 0;
+v00FE1328_0 .net "FUNC", 2 0, C4<zzz>; 0 drivers
+v00FE0E58_0 .var "FUNCT_OUT", 2 0;
+v00FE1118_0 .net "IMMGEN_IN", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v00FE11C8_0 .var "IMMGEN_OUT", 31 0;
+v00FE13D8_0 .net "INSTHIT", 0 0, C4<z>; 0 drivers
+v00FE0CF8_0 .var "INSTHIT_OUT", 0 0;
+v00FE1220_0 .net "JUMP", 0 0, C4<z>; 0 drivers
+v00FE0D50_0 .var "JUMP_OUT", 0 0;
+v00FE1380_0 .net "MEMREAD", 0 0, C4<z>; 0 drivers
+v00FE1278_0 .var "MEMREAD_OUT", 0 0;
+v00FE0DA8_0 .net "MEMWRITE", 0 0, C4<z>; 0 drivers
+v00FE0EB0_0 .var "MEMWRITE_OUT", 0 0;
+v00FE0F08_0 .var "MUX1_OUT", 0 0;
+v00FE12D0_0 .net "MUX1_SELECT", 0 0, C4<z>; 0 drivers
+v010127F8_0 .var "MUX2_OUT", 0 0;
+v01012B68_0 .net "MUX2_SELECT", 0 0, C4<z>; 0 drivers
+v01012900_0 .var "MUX3_OUT", 1 0;
+v01012BC0_0 .net "MUX3_SELECT", 1 0, C4<zz>; 0 drivers
+v01012A08_0 .var "MUX4_OUT", 0 0;
+v01012958_0 .net "MUX4_SELECT", 0 0, C4<z>; 0 drivers
+v010127A0_0 .net "NEXTPC", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010128A8_0 .var "NEXTPC_OUT", 31 0;
+v01012A60_0 .net "PC", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010129B0_0 .var "PC_OUT", 31 0;
+v01012748_0 .net "RESET", 0 0, C4<z>; 0 drivers
+v01012B10_0 .net "WRITEENABLE", 0 0, C4<z>; 0 drivers
+v01012850_0 .var "WRITEENABLE_OUT", 0 0;
+E_00FD2958 .event posedge, v00FE0F60_0;
+S_010E9FE8 .scope module, "PIPEREG3" "PIPEREG3" 2 131;
+ .timescale -9 -10;
+v01012AB8_0 .net "ALUOUT", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v01012118_0 .var "ALU_OUT", 31 0;
+v01012170_0 .net "BUSYWAIT", 0 0, C4<z>; 0 drivers
+v01011E58_0 .net "CLK", 0 0, C4<z>; 0 drivers
+v010121C8_0 .net "DATA2", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v01011D50_0 .var "DATA2_OUT", 31 0;
+v010125E8_0 .var "DEREG_OUT", 4 0;
+v010123D8_0 .net "DESREG", 4 0, C4<zzzzz>; 0 drivers
+v01012220_0 .net "FUNCT", 2 0, C4<zzz>; 0 drivers
+v01012698_0 .var "FUNCT_OUT", 2 0;
+v01012640_0 .var "INSHITOUT", 0 0;
+v01011C48_0 .net "INSTHIT", 0 0, C4<z>; 0 drivers
+v01012430_0 .net "MEMREAD", 0 0, C4<z>; 0 drivers
+v01012328_0 .var "MEMREAD_OUT", 0 0;
+v010126F0_0 .net "MEMWRITE", 0 0, C4<z>; 0 drivers
+v01012380_0 .var "MEMWRITE_OUT", 0 0;
+v01012488_0 .var "MUX4_OUT", 0 0;
+v01011EB0_0 .net "MUX4_SELECT", 0 0, C4<z>; 0 drivers
+v01011FB8_0 .net "RESET", 0 0, C4<z>; 0 drivers
+v01011DA8_0 .net "WRITEENABLE", 0 0, C4<z>; 0 drivers
+v01011CA0_0 .var "WRITEENABLE_OUT", 0 0;
+E_00FD2AB8 .event posedge, v01011E58_0;
+S_010E9BA8 .scope module, "PIPEREG4" "PIPEREG4" 2 193;
+ .timescale -9 -10;
+v010122D0_0 .net "ALUOUT", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v01011E00_0 .var "ALU_OUT", 31 0;
+v01012010_0 .net "CLK", 0 0, C4<z>; 0 drivers
+v010124E0_0 .net "DATAMEMOUT", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v01011CF8_0 .var "DATAMEM_OUT", 31 0;
+v01011F08_0 .net "DESREG", 4 0, C4<zzzzz>; 0 drivers
+v01012278_0 .var "DESREG_OUT", 4 0;
+v01012538_0 .net "INSHIT", 0 0, C4<z>; 0 drivers
+v01012590_0 .var "INSTHIT_OUT", 0 0;
+v01011F60_0 .var "MUX4_OUT", 0 0;
+v01012068_0 .net "MUX4_SELECT", 0 0, C4<z>; 0 drivers
+v010120C0_0 .net "RESET", 0 0, C4<z>; 0 drivers
+v01013280_0 .net "WRITEENABLE", 0 0, C4<z>; 0 drivers
+v01012D00_0 .var "WRITEENABLE_OUT", 0 0;
+E_00FD2B18 .event posedge, v01012010_0;
+    .scope S_010EA978;
+T_0 ;
+    %wait E_00FD3698;
+    %delay 30, 0;
+    %load/v 8, v010EB990_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_0.0, 8;
+    %load/v 8, v00FE5A98_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v010EE848_0, 0, 8;
+    %load/v 8, v00FE5AF0_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v00FE5B48_0, 0, 8;
+    %load/v 8, v010E4C50_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v010E4BF8_0, 0, 8;
+    %load/v 8, v010EB810_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010EEE30_0, 0, 8;
+T_0.0 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_010EA428;
+T_1 ;
+    %wait E_00FD2958;
+    %delay 30, 0;
+    %load/v 8, v00FE1010_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_1.0, 8;
+    %load/v 8, v010127A0_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v010128A8_0, 0, 8;
+    %load/v 8, v01012A60_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v010129B0_0, 0, 8;
+    %load/v 8, v00FE1170_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v00FE1430_0, 0, 8;
+    %load/v 8, v00FE1068_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v00FE0E00_0, 0, 8;
+    %load/v 8, v010E4748_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v010E3338_0, 0, 8;
+    %load/v 8, v00FE10C0_0, 5;
+    %ix/load 0, 5, 0;
+    %assign/v0 v00FE0FB8_0, 0, 8;
+    %load/v 8, v010EE8F8_0, 5;
+    %ix/load 0, 5, 0;
+    %assign/v0 v010E4698_0, 0, 8;
+    %load/v 8, v00FE1328_0, 3;
+    %ix/load 0, 3, 0;
+    %assign/v0 v00FE0E58_0, 0, 8;
+    %load/v 8, v01012BC0_0, 2;
+    %ix/load 0, 2, 0;
+    %assign/v0 v01012900_0, 0, 8;
+    %load/v 8, v01012B68_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010127F8_0, 0, 8;
+    %load/v 8, v01012B10_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012850_0, 0, 8;
+    %load/v 8, v01012958_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012A08_0, 0, 8;
+    %load/v 8, v00FE0DA8_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00FE0EB0_0, 0, 8;
+    %load/v 8, v00FE1380_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00FE1278_0, 0, 8;
+    %load/v 8, v010E46F0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010E3390_0, 0, 8;
+    %load/v 8, v00FE1220_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00FE0D50_0, 0, 8;
+    %load/v 8, v00FE12D0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00FE0F08_0, 0, 8;
+    %load/v 8, v00FE13D8_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00FE0CF8_0, 0, 8;
+T_1.0 ;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_010EA428;
+T_2 ;
+    %wait E_00FD2958;
+    %load/v 8, v01012748_0, 1;
+    %jmp/0xz  T_2.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v00FE0CF8_0, 0, 0;
+T_2.0 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_010E9FE8;
+T_3 ;
+    %wait E_00FD2AB8;
+    %delay 30, 0;
+    %load/v 8, v01012170_0, 1;
+    %inv 8, 1;
+    %jmp/0xz  T_3.0, 8;
+    %load/v 8, v01012AB8_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v01012118_0, 0, 8;
+    %load/v 8, v010121C8_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v01011D50_0, 0, 8;
+    %load/v 8, v010123D8_0, 5;
+    %ix/load 0, 5, 0;
+    %assign/v0 v010125E8_0, 0, 8;
+    %load/v 8, v01012220_0, 3;
+    %ix/load 0, 3, 0;
+    %assign/v0 v01012698_0, 0, 8;
+    %load/v 8, v01011DA8_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01011CA0_0, 0, 8;
+    %load/v 8, v01011EB0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012488_0, 0, 8;
+    %load/v 8, v010126F0_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012380_0, 0, 8;
+    %load/v 8, v01012430_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012328_0, 0, 8;
+    %load/v 8, v01011C48_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012640_0, 0, 8;
+T_3.0 ;
+    %jmp T_3;
+    .thread T_3;
+    .scope S_010E9FE8;
+T_4 ;
+    %wait E_00FD2AB8;
+    %load/v 8, v01011FB8_0, 1;
+    %jmp/0xz  T_4.0, 8;
+    %ix/load 0, 32, 0;
+    %assign/v0 v01012118_0, 0, 0;
+    %ix/load 0, 32, 0;
+    %assign/v0 v01011D50_0, 0, 0;
+    %ix/load 0, 5, 0;
+    %assign/v0 v010125E8_0, 0, 0;
+    %ix/load 0, 3, 0;
+    %assign/v0 v01012698_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01011CA0_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012488_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012380_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012328_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012640_0, 0, 0;
+T_4.0 ;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_010E9BA8;
+T_5 ;
+    %wait E_00FD2B18;
+    %delay 30, 0;
+    %load/v 8, v010122D0_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v01011E00_0, 0, 8;
+    %load/v 8, v010124E0_0, 32;
+    %ix/load 0, 32, 0;
+    %assign/v0 v01011CF8_0, 0, 8;
+    %load/v 8, v01012538_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012590_0, 0, 8;
+    %load/v 8, v01011F08_0, 5;
+    %ix/load 0, 5, 0;
+    %assign/v0 v01012278_0, 0, 8;
+    %load/v 8, v01013280_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012D00_0, 0, 8;
+    %load/v 8, v01012068_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01011F60_0, 0, 8;
+    %load/v 8, v01012538_0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012590_0, 0, 8;
+    %jmp T_5;
+    .thread T_5;
+    .scope S_010E9BA8;
+T_6 ;
+    %wait E_00FD2B18;
+    %load/v 8, v010120C0_0, 1;
+    %jmp/0xz  T_6.0, 8;
+    %ix/load 0, 1, 0;
+    %assign/v0 v01012590_0, 0, 0;
+T_6.0 ;
+    %jmp T_6;
+    .thread T_6;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Pipeline_Registers.v";
