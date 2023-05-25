@@ -18,10 +18,10 @@ module DATA_CACHE (
     
     
 
-    reg STORE_VALID [7:0];              // 8 Registers to store 1 bit valid for each data block
-    reg STORE_DIRTY [7:0];              // 8 Registers to store 1 bit dirty for each data block
-    reg [24:0] STORE_TAG [7:0];          // 8 Registers to store 3 bit tag for each data block
-    reg [127:0] STORE_DATA [7:0];        // 8 Registers to store 32 bit data block
+    reg CACHE_VALID [7:0];              // 8 Registers to store 1 bit valid for each data block
+    reg CACHE_DIRTY [7:0];              // 8 Registers to store 1 bit dirty for each data block
+    reg [24:0] CACHE_TAG [7:0];          // 8 Registers to store 3 bit tag for each data block
+    reg [127:0] CACHE_DATA [7:0];        // 8 Registers to store 32 bit data block
 
     integer i;
 
@@ -43,10 +43,10 @@ module DATA_CACHE (
     always @ (RESET)
     begin
         for(i = 0; i < 8; i++) begin
-            STORE_VALID[i] = 1'd0;
-            STORE_DIRTY[i] = 1'd0;
-            STORE_TAG[i] = 25'dx;
-            STORE_DATA[i] = 128'dx;
+            CACHE_VALID[i] = 1'd0;
+            CACHE_DIRTY[i] = 1'd0;
+            CACHE_TAG[i] = 25'dx;
+            CACHE_DATA[i] = 128'dx;
         end
     end
 
@@ -68,12 +68,12 @@ module DATA_CACHE (
     always @ (*)
     begin
         #1
-        DATA = STORE_DATA[MEM_ADDRESS[index]];            // Getting 32 bit data corresponding to index given by memory MEM_ADDRESS
+        DATA = CACHE_DATA[MEM_ADDRESS[index]];            // Getting 32 bit data corresponding to index given by memory MEM_ADDRESS
     end
 
-    assign #1 VALID = STORE_VALID[index];    // Getting valid bit corresponding to index given by memory MEM_ADDRESS
-    assign #1 DIRTY = STORE_DIRTY[index];    // Getting dirty bit corresponding to index given by memory MEM_ADDRESS
-    assign #1 TAG = STORE_TAG[index];        // Getting tag 3 bits corresponding to index given by memory MEM_ADDRESS
+    assign #1 VALID = CACHE_VALID[index];    // Getting valid bit corresponding to index given by memory MEM_ADDRESS
+    assign #1 DIRTY = CACHE_DIRTY[index];    // Getting dirty bit corresponding to index given by memory MEM_ADDRESS
+    assign #1 TAG = CACHE_TAG[index];        // Getting tag 3 bits corresponding to index given by memory MEM_ADDRESS
 
 
     wire COMPARATORSIGNAL;  // To store whether tag bits in corresponding index & tag bits given by memory MEM_ADDRESS matches
@@ -111,13 +111,13 @@ end
 	if(MEM_READhit)begin
 		case(offset)
 			'b00:	
-                 #1 CACHE_READ_OUT = STORE_DATA[index][31:0];
+                 #1 CACHE_READ_OUT = CACHE_DATA[index][31:0];
 			'b01:	
-                 #1 CACHE_READ_OUT = STORE_DATA[index][63:32];
+                 #1 CACHE_READ_OUT = CACHE_DATA[index][63:32];
 			'b10:	
-                 #1 CACHE_READ_OUT = STORE_DATA[index][95:64];
+                 #1 CACHE_READ_OUT = CACHE_DATA[index][95:64];
 			'b11:	
-                 #1 CACHE_READ_OUT = STORE_DATA[index][127:96];
+                 #1 CACHE_READ_OUT = CACHE_DATA[index][127:96];
 		endcase
             MEM_READhit = 0;
             state = IDLE;
@@ -133,16 +133,16 @@ end
     begin
         if (HITSIGNAL && MEM_WRITE) begin
             #1;
-            STORE_DIRTY[MEM_ADDRESS[4:2]] = 1'b1;       // dirty bit of the index is set as data block in cache is updated with data coming from register file (indicate that the block of data is inconsistant)
+            CACHE_DIRTY[MEM_ADDRESS[4:2]] = 1'b1;       // dirty bit of the index is set as data block in cache is updated with data coming from register file (indicate that the block of data is inconsistant)
 
             if (offset == 2'b00) begin
-                STORE_DATA[index][31:0] = DATA_IN;
+                CACHE_DATA[index][31:0] = DATA_IN;
             end else if (offset == 2'b01) begin
-                STORE_DATA[index][63:32] = DATA_IN;
+                CACHE_DATA[index][63:32] = DATA_IN;
             end else if (offset == 2'b10) begin
-                STORE_DATA[index][95:64] = DATA_IN;
+                CACHE_DATA[index][95:64] = DATA_IN;
             end else if (offset == 2'b11) begin
-                STORE_DATA[index][127:96] = DATA_IN;
+                CACHE_DATA[index][127:96] = DATA_IN;
             end
         end
     end
@@ -232,17 +232,17 @@ end
                 MEM_WRITE_OUT  = 32'dx;
 
                 #1
-                STORE_DATA[index] = MEM_READ_OUT;    // Update current cache data word with newly fetched data from memory
-                STORE_TAG[index] = tag;     // Update 'STORE_TAG' array with tag bits corresponding to the MEM_ADDRESS
-                STORE_VALID[index] = 1'b1;           // Set the newly fetched data from memory as valid
-                STORE_DIRTY[index] = 1'b0;           // Set that newly fetched data is consistant with the data word in memory
+                CACHE_DATA[index] = MEM_READ_OUT;    // Update current cache data word with newly fetched data from memory
+                CACHE_TAG[index] = tag;     // Update 'CACHE_TAG' array with tag bits corresponding to the MEM_ADDRESS
+                CACHE_VALID[index] = 1'b1;           // Set the newly fetched data from memory as valid
+                CACHE_DIRTY[index] = 1'b0;           // Set that newly fetched data is consistant with the data word in memory
 
             end
 
         endcase
     end
 
-    //  logic  transitioning 
+    //  state transitioning and responds to RESET signal 
     always @(posedge CLK, RESET)
     begin
         if(RESET)
@@ -254,12 +254,12 @@ end
     /* Cache Controller FSM End */
 
 
-    // dumping register values to .vcd file
-    initial
-    begin
-        $dumpfile("cpu_wavedata.vcd");
-        for(i=0;i<8;i++)
-            $dumpvars(1,STORE_DATA[i], STORE_TAG[i], STORE_VALID[i], STORE_DIRTY[i]);
-    end
+    // // dumping register values to .vcd file
+    // initial
+    // begin
+    //     $dumpfile("cpu_wavedata.vcd");
+    //     for(i=0;i<8;i++)
+    //         $dumpvars(1,CACHE_DATA[i], CACHE_TAG[i], CACHE_VALID[i], CACHE_DIRTY[i]);
+    // end
 
 endmodule
