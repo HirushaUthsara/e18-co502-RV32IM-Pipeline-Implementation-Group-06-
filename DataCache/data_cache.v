@@ -42,7 +42,7 @@ module DATA_CACHE (
     // RESET data cache
     always @ (RESET)
     begin
-        for(i = 0; i < 8; i++) begin
+        for(i = 0; i < 8; i=i+1) begin
             CACHE_VALID[i] = 1'd0;
             CACHE_DIRTY[i] = 1'd0;
             CACHE_TAG[i] = 25'dx;

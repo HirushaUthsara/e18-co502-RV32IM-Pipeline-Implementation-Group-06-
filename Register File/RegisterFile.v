@@ -18,7 +18,7 @@ integer i;
 always @(posedge clk) begin
     if (rst) begin
         // Reset all registers to zero
-        for (i = 0; i < 32; i++) begin
+        for (i = 0; i < 32; i = i+1) begin
             regs[i] <= 0;
         end
     end else begin
