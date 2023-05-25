@@ -6,7 +6,7 @@ module MUX_A(INPUT1, INPUT2, OUT, SELECT);
     input INPUT1, INPUT2, SELECT;
     output OUT;
     
-    #1 assign OUT = (SELECT) ? INPUT2:INPUT1; 
+    assign OUT = (SELECT) ? INPUT2 : INPUT1; 
 
 endmodule
 
@@ -16,7 +16,7 @@ module MUX_B(INPUT1, INPUT2, INPUT3, SELECT, OUT);
     input [31:0] INPUT1, INPUT2, INPUT3;
     input [1:0] SELECT;
     output [31:0] OUT;
-
-    #1 assign OUT = (SELECT[1]) ? (SELECT[0]? 32'bx:INPUT3) : (SELECT[0]? INPUT2:INPUT1) ;
+    
+    assign OUT = (SELECT[1]) ? (SELECT[0]? 32'bx:INPUT3) : (SELECT[0]? INPUT2:INPUT1) ;
 
 endmodule
