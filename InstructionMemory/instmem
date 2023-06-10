@@ -1,0 +1,602 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 10;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00F62670 .scope module, "INSTRUCTION_MEMORY" "INSTRUCTION_MEMORY" 2 5;
+ .timescale -9 -10;
+v00F79F60_0 .net "BLOCK_ADDRESS", 27 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010E2F48_0 .var "BUSYWAIT", 0 0;
+v010E2FA0_0 .net "CLOCK", 0 0, C4<z>; 0 drivers
+v010E2FF8 .array "MEM_ARRAY", 0 1023, 7 0;
+v010E3050_0 .net "READ", 0 0, C4<z>; 0 drivers
+v010EB668_0 .var "READACCESS", 0 0;
+v010EB6C0_0 .var "READ_INST", 127 0;
+v010EB718_0 .var *"_s10", 7 0; Local signal
+v010EB770_0 .var *"_s11", 7 0; Local signal
+v010EB7C8_0 .var *"_s12", 7 0; Local signal
+v010EB820_0 .var *"_s13", 7 0; Local signal
+v010EB878_0 .var *"_s14", 7 0; Local signal
+v010EB8D0_0 .var *"_s15", 7 0; Local signal
+v010EB928_0 .var *"_s16", 7 0; Local signal
+v010EB980_0 .var *"_s17", 7 0; Local signal
+v010EB9D8_0 .var *"_s2", 7 0; Local signal
+v00F70CC0_0 .var *"_s3", 7 0; Local signal
+v00F71108_0 .var *"_s4", 7 0; Local signal
+v00F71058_0 .var *"_s5", 7 0; Local signal
+v00F70D98_0 .var *"_s6", 7 0; Local signal
+v00F71478_0 .var *"_s7", 7 0; Local signal
+v00F71160_0 .var *"_s8", 7 0; Local signal
+v00F71370_0 .var *"_s9", 7 0; Local signal
+E_00F647D0 .event posedge, v010E2FA0_0;
+E_00F64830 .event edge, v010E3050_0;
+    .scope S_00F62670;
+T_0 ;
+    %set/v v010E2F48_0, 0, 1;
+    %set/v v010EB668_0, 0, 1;
+    %movi 8, 2400223379, 32;
+    %ix/load 3, 0, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 8;
+t_0 ;
+    %ix/load 3, 1, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 16;
+t_1 ;
+    %ix/load 3, 2, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 24;
+t_2 ;
+    %ix/load 3, 3, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 32;
+t_3 ;
+    %ix/load 3, 4, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_4 ;
+    %ix/load 3, 5, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_5 ;
+    %ix/load 3, 6, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_6 ;
+    %ix/load 3, 7, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_7 ;
+    %ix/load 3, 8, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_8 ;
+    %ix/load 3, 9, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_9 ;
+    %ix/load 3, 10, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_10 ;
+    %ix/load 3, 11, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_11 ;
+    %movi 8, 62995, 32;
+    %ix/load 3, 12, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 8;
+t_12 ;
+    %ix/load 3, 13, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 16;
+t_13 ;
+    %ix/load 3, 14, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 24;
+t_14 ;
+    %ix/load 3, 15, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 32;
+t_15 ;
+    %ix/load 3, 16, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_16 ;
+    %ix/load 3, 17, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_17 ;
+    %ix/load 3, 18, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_18 ;
+    %ix/load 3, 19, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_19 ;
+    %ix/load 3, 20, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_20 ;
+    %ix/load 3, 21, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_21 ;
+    %ix/load 3, 22, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_22 ;
+    %ix/load 3, 23, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_23 ;
+    %movi 8, 1441955, 32;
+    %ix/load 3, 24, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 8;
+t_24 ;
+    %ix/load 3, 25, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 16;
+t_25 ;
+    %ix/load 3, 26, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 24;
+t_26 ;
+    %ix/load 3, 27, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 32;
+t_27 ;
+    %ix/load 3, 28, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_28 ;
+    %ix/load 3, 29, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_29 ;
+    %ix/load 3, 30, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_30 ;
+    %ix/load 3, 31, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_31 ;
+    %ix/load 3, 32, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_32 ;
+    %ix/load 3, 33, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_33 ;
+    %ix/load 3, 34, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_34 ;
+    %ix/load 3, 35, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_35 ;
+    %movi 8, 4063625475, 32;
+    %ix/load 3, 36, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 8;
+t_36 ;
+    %ix/load 3, 37, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 16;
+t_37 ;
+    %ix/load 3, 38, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 24;
+t_38 ;
+    %ix/load 3, 39, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 32;
+t_39 ;
+    %ix/load 3, 40, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_40 ;
+    %ix/load 3, 41, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_41 ;
+    %ix/load 3, 42, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_42 ;
+    %ix/load 3, 43, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_43 ;
+    %movi 8, 4072710563, 32;
+    %ix/load 3, 44, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 8;
+t_44 ;
+    %ix/load 3, 45, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 16;
+t_45 ;
+    %ix/load 3, 46, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 24;
+t_46 ;
+    %ix/load 3, 47, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 32;
+t_47 ;
+    %movi 8, 4063274627, 32;
+    %ix/load 3, 48, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 8;
+t_48 ;
+    %ix/load 3, 49, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 16;
+t_49 ;
+    %ix/load 3, 50, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 24;
+t_50 ;
+    %ix/load 3, 51, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 32;
+t_51 ;
+    %ix/load 3, 52, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_52 ;
+    %ix/load 3, 53, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_53 ;
+    %ix/load 3, 54, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_54 ;
+    %ix/load 3, 55, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_55 ;
+    %ix/load 3, 56, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_56 ;
+    %ix/load 3, 57, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_57 ;
+    %ix/load 3, 58, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_58 ;
+    %ix/load 3, 59, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 0;
+t_59 ;
+    %movi 8, 4073759139, 32;
+    %ix/load 3, 60, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 8;
+t_60 ;
+    %ix/load 3, 61, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 16;
+t_61 ;
+    %ix/load 3, 62, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 24;
+t_62 ;
+    %ix/load 3, 63, 0; address
+    %ix/load 0, 8, 0; word width
+    %ix/load 1, 0, 0; part off
+    %assign/av v010E2FF8, 0, 32;
+t_63 ;
+    %end;
+    .thread T_0;
+    .scope S_00F62670;
+T_1 ;
+    %wait E_00F64830;
+    %load/v 8, v010E3050_0, 1;
+    %jmp/0  T_1.0, 8;
+    %mov 9, 1, 1;
+    %jmp/1  T_1.2, 8;
+T_1.0 ; End of true expr.
+    %jmp/0  T_1.1, 8;
+ ; End of false expr.
+    %blend  9, 0, 1; Condition unknown.
+    %jmp  T_1.2;
+T_1.1 ;
+    %mov 9, 0, 1; Return false value
+T_1.2 ;
+    %set/v v010E2F48_0, 9, 1;
+    %load/v 8, v010E3050_0, 1;
+    %jmp/0  T_1.3, 8;
+    %mov 9, 1, 1;
+    %jmp/1  T_1.5, 8;
+T_1.3 ; End of true expr.
+    %jmp/0  T_1.4, 8;
+ ; End of false expr.
+    %blend  9, 0, 1; Condition unknown.
+    %jmp  T_1.5;
+T_1.4 ;
+    %mov 9, 0, 1; Return false value
+T_1.5 ;
+    %set/v v010EB668_0, 9, 1;
+    %jmp T_1;
+    .thread T_1, $push;
+    .scope S_00F62670;
+T_2 ;
+    %wait E_00F647D0;
+    %load/v 8, v010EB668_0, 1;
+    %jmp/0xz  T_2.0, 8;
+    %mov 16, 0, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB9D8_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB9D8_0, 8;
+    %ix/load 0, 0, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 1, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v00F70CC0_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v00F70CC0_0, 8;
+    %ix/load 0, 8, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 2, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v00F71108_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v00F71108_0, 8;
+    %ix/load 0, 16, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 3, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v00F71058_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v00F71058_0, 8;
+    %ix/load 0, 24, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 4, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v00F70D98_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v00F70D98_0, 8;
+    %ix/load 0, 32, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 5, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v00F71478_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v00F71478_0, 8;
+    %ix/load 0, 40, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 6, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v00F71160_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v00F71160_0, 8;
+    %ix/load 0, 48, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 7, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v00F71370_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v00F71370_0, 8;
+    %ix/load 0, 56, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 8, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB718_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB718_0, 8;
+    %ix/load 0, 64, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 9, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB770_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB770_0, 8;
+    %ix/load 0, 72, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 10, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB7C8_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB7C8_0, 8;
+    %ix/load 0, 80, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 11, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB820_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB820_0, 8;
+    %ix/load 0, 88, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 12, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB878_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB878_0, 8;
+    %ix/load 0, 96, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 13, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB8D0_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB8D0_0, 8;
+    %ix/load 0, 104, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %movi 48, 14, 4;
+    %mov 16, 48, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB928_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB928_0, 8;
+    %ix/load 0, 112, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %mov 16, 1, 4;
+    %load/v 20, v00F79F60_0, 28;
+    %ix/get 3, 16, 32;
+    %load/av 8, v010E2FF8, 8;
+    %set/v v010EB980_0, 8, 8;
+    %movi 8, 400, 10;
+    %ix/get 0, 8, 10;
+    %delayx 0;
+    %load/v 8, v010EB980_0, 8;
+    %ix/load 0, 120, 0;
+    %set/x0 v010EB6C0_0, 8, 8;
+    %set/v v010E2F48_0, 0, 1;
+    %set/v v010EB668_0, 0, 1;
+T_2.0 ;
+    %jmp T_2;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "InstructionMemory.v";

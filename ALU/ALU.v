@@ -1,10 +1,10 @@
 `timescale 1ns/100ps // defining the time units used in the system
 
-module ALU(DATA1, DATA2, RESULT, SELECT, ZERO, SIGN_BIT, SLTU_BIT);
+module ALU(DATA1, DATA2, RESULT, SELECT, EQUAL, SIGNEDLT, UNSIGNEDLT);
     input[31:0] DATA1, DATA2;   // defining variables to get the input values
     input[4:0] SELECT;          // variable to store the ALU opcode
     output reg[31:0] RESULT;    // variable to store the result of the ALU
-    output ZERO, SIGN_BIT, SLTU_BIT;
+    output EQUAL, SIGNEDLT, UNSIGNEDLT; // defining output signals
 
 // defining variables to store the results of each airthmatic operation
     wire[31:0]  AND_RES,    // and operation
@@ -27,10 +27,7 @@ module ALU(DATA1, DATA2, RESULT, SELECT, ZERO, SIGN_BIT, SLTU_BIT);
                 SLT_RES,    // less than
                 SLTU_RES;   // less than unsigned
 
-
-    assign ZERO = ~(|RESULT);
-    assign SIGN_BIT = RESULT[31];
-    assign SLTU_BIT = SLTU_RES[0]; 
+    wire [63:0] MULTIPICATION; 
 
     // operating bitwise operations with 3 time unit delay
 
@@ -52,6 +49,7 @@ module ALU(DATA1, DATA2, RESULT, SELECT, ZERO, SIGN_BIT, SLTU_BIT);
 
     // multipication operation
     assign  #3 MUL_RES = DATA1 * DATA2;
+    //assign  MULTIPICATION = DATA1 * DATA2; // FOR A RESULT OF UPPER 32 BITS
     assign  #3 MULH_RES = $signed(DATA1) * $signed(DATA2);
     assign  #3 MULHU_RES = $unsigned(DATA1) * $unsigned(DATA2);
     assign  #3 MULHSU_RES = $signed(DATA1) * $unsigned(DATA2);
@@ -73,64 +71,32 @@ module ALU(DATA1, DATA2, RESULT, SELECT, ZERO, SIGN_BIT, SLTU_BIT);
     always@(*)
     begin
         case(SELECT)
-        8'b00000000: begin
-            RESULT = ADD_RES;
-        end
-        8'b00000001: begin
-            RESULT = SUB_RES;
-        end
-        8'b00000010: begin
-            RESULT = AND_RES;
-        end
-        8'b00000011: begin
-            RESULT = OR_RES;
-        end
-        8'b00000100: begin
-            RESULT = XOR_RES;
-        end
-        8'b00000101: begin
-            RESULT = SLL_RES;
-        end
-        8'b00000110: begin
-            RESULT = SRL_RES;
-        end
-        8'b00000111: begin
-            RESULT = SRA_RES;
-        end
-        8'b00001000: begin
-            RESULT = MUL_RES;
-        end
-        8'b00001001: begin
-            RESULT = MULH_RES;
-        end
-        8'b00001010: begin
-            RESULT = MULHU_RES;
-        end
-        8'b00001011: begin
-            RESULT = MULHSU_RES;
-        end
-        8'b00001100: begin
-            RESULT = DIV_RES;
-        end
-        8'b00001101: begin
-            RESULT = DIVU_RES;
-        end
-        8'b00001110: begin
-            RESULT = REM_RES;
-        end
-        8'b00001111: begin
-            RESULT = REMU_RES;
-        end
-        8'b00010000: begin
-            RESULT = SLT_RES;
-        end
-        8'b00010001: begin
-            RESULT = SLTU_RES;
-        end
+        8'b00000000: RESULT = FWD_RES;  
+        8'b00000001: RESULT = ADD_RES; 
+        8'b00000010: RESULT = SUB_RES; 
+        8'b00000011: RESULT = SLL_RES;
+        8'b00000100: RESULT = SLT_RES;
+        8'b00000101: RESULT = SLTU_RES;
+        8'b00000110: RESULT = XOR_RES;
+        8'b00000111: RESULT = SRL_RES;
+        8'b00001000: RESULT = SRA_RES;
+        8'b00001001: RESULT = OR_RES;
+        8'b00001010: RESULT = AND_RES;
+        8'b00001011: RESULT = MUL_RES;
+        8'b00001100: RESULT = MULH_RES;
+        8'b00001101: RESULT = MULHSU_RES;
+        8'b00001110: RESULT = MULHU_RES;
+        8'b00001111: RESULT = DIV_RES;
+        8'b00010000: RESULT = DIVU_RES;
+        8'b00010001: RESULT = REM_RES;
+        8'b00010010: RESULT = REMU_RES;
         default:RESULT = 31'd0;
     endcase
     end
 
+    assign EQUAL = ~(|RESULT);      // DATA1 == DATA2
+    assign SIGNEDLT = RESULT[31];   // DATA1 < DATA2
+    assign UNSIGNEDLT= SLTU_RES[0]; // |DATA1| < |DATA2|
 
 endmodule
 

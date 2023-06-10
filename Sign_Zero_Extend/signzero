@@ -1,0 +1,242 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01063020 .scope module, "Sign_Zero_Extend" "Sign_Zero_Extend" 2 1;
+ .timescale 0 0;
+v01069368_0 .var "B_TYPE", 31 0;
+v00F508A8_0 .net "INSTRUCTION", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v00F50900_0 .var "I_TYPE", 31 0;
+v00F50958_0 .var "J_TYPE", 31 0;
+v00F509B0_0 .var "OUT", 31 0;
+v00F50A08_0 .net "SELECT", 2 0, C4<zzz>; 0 drivers
+v00F50A60_0 .var "S_TYPE", 31 0;
+v00F50AB8_0 .var "U_TYPE", 31 0;
+E_01067DD0/0 .event edge, v00F508A8_0, v00F50A08_0, v00F50900_0, v00F50A60_0;
+E_01067DD0/1 .event edge, v00F50AB8_0, v01069368_0, v00F50958_0;
+E_01067DD0 .event/or E_01067DD0/0, E_01067DD0/1;
+    .scope S_01063020;
+T_0 ;
+    %wait E_01067DD0;
+    %delay 2, 0;
+    %mov 8, 0, 12;
+    %ix/load 1, 12, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.0, 4;
+    %load/x1p 40, v00F508A8_0, 20;
+    %jmp T_0.1;
+T_0.0 ;
+    %mov 40, 2, 20;
+T_0.1 ;
+    %mov 20, 40, 20; Move signal select into place
+    %set/v v00F50AB8_0, 8, 32;
+    %mov 40, 0, 1;
+    %ix/load 1, 21, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.2, 4;
+    %load/x1p 61, v00F508A8_0, 10;
+    %jmp T_0.3;
+T_0.2 ;
+    %mov 61, 2, 10;
+T_0.3 ;
+    %mov 41, 61, 10; Move signal select into place
+    %ix/load 1, 20, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.4, 4;
+    %load/x1p 61, v00F508A8_0, 1;
+    %jmp T_0.5;
+T_0.4 ;
+    %mov 61, 2, 1;
+T_0.5 ;
+    %mov 51, 61, 1; Move signal select into place
+    %ix/load 1, 12, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.6, 4;
+    %load/x1p 61, v00F508A8_0, 8;
+    %jmp T_0.7;
+T_0.6 ;
+    %mov 61, 2, 8;
+T_0.7 ;
+    %mov 52, 61, 8; Move signal select into place
+    %ix/load 1, 31, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.8, 4;
+    %load/x1p 61, v00F508A8_0, 1;
+    %jmp T_0.9;
+T_0.8 ;
+    %mov 61, 2, 1;
+T_0.9 ;
+    %mov 60, 61, 1; Move signal select into place
+    %mov 8, 40, 21;
+    %mov 29, 0, 11;
+    %set/v v00F50958_0, 8, 32;
+    %ix/load 1, 7, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.10, 4;
+    %load/x1p 52, v00F508A8_0, 5;
+    %jmp T_0.11;
+T_0.10 ;
+    %mov 52, 2, 5;
+T_0.11 ;
+    %mov 40, 52, 5; Move signal select into place
+    %ix/load 1, 25, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.12, 4;
+    %load/x1p 52, v00F508A8_0, 6;
+    %jmp T_0.13;
+T_0.12 ;
+    %mov 52, 2, 6;
+T_0.13 ;
+    %mov 45, 52, 6; Move signal select into place
+    %ix/load 1, 31, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.14, 4;
+    %load/x1p 52, v00F508A8_0, 1;
+    %jmp T_0.15;
+T_0.14 ;
+    %mov 52, 2, 1;
+T_0.15 ;
+    %mov 51, 52, 1; Move signal select into place
+    %mov 8, 40, 12;
+    %mov 20, 0, 20;
+    %set/v v00F50A60_0, 8, 32;
+    %mov 40, 0, 1;
+    %ix/load 1, 8, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.16, 4;
+    %load/x1p 53, v00F508A8_0, 4;
+    %jmp T_0.17;
+T_0.16 ;
+    %mov 53, 2, 4;
+T_0.17 ;
+    %mov 41, 53, 4; Move signal select into place
+    %ix/load 1, 25, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.18, 4;
+    %load/x1p 53, v00F508A8_0, 6;
+    %jmp T_0.19;
+T_0.18 ;
+    %mov 53, 2, 6;
+T_0.19 ;
+    %mov 45, 53, 6; Move signal select into place
+    %ix/load 1, 7, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.20, 4;
+    %load/x1p 53, v00F508A8_0, 1;
+    %jmp T_0.21;
+T_0.20 ;
+    %mov 53, 2, 1;
+T_0.21 ;
+    %mov 51, 53, 1; Move signal select into place
+    %ix/load 1, 31, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.22, 4;
+    %load/x1p 53, v00F508A8_0, 1;
+    %jmp T_0.23;
+T_0.22 ;
+    %mov 53, 2, 1;
+T_0.23 ;
+    %mov 52, 53, 1; Move signal select into place
+    %mov 8, 40, 13;
+    %mov 21, 0, 19;
+    %set/v v01069368_0, 8, 32;
+    %load/v 8, v00F508A8_0, 8; Only need 8 of 32 bits
+; Save base=8 wid=8 in lookaside.
+    %cmpi/u 8, 19, 8;
+    %mov 8, 4, 1;
+    %ix/load 1, 12, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.27, 4;
+    %load/x1p 9, v00F508A8_0, 3;
+    %jmp T_0.28;
+T_0.27 ;
+    %mov 9, 2, 3;
+T_0.28 ;
+; Save base=9 wid=3 in lookaside.
+    %cmpi/u 9, 5, 3;
+    %mov 9, 4, 1;
+    %and 8, 9, 1;
+    %jmp/0  T_0.24, 8;
+    %ix/load 1, 20, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.29, 4;
+    %load/x1p 41, v00F508A8_0, 5;
+    %jmp T_0.30;
+T_0.29 ;
+    %mov 41, 2, 5;
+T_0.30 ;
+    %mov 9, 41, 5; Move signal select into place
+    %mov 14, 0, 27;
+    %jmp/1  T_0.26, 8;
+T_0.24 ; End of true expr.
+    %ix/load 1, 20, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.31, 4;
+    %load/x1p 85, v00F508A8_0, 11;
+    %jmp T_0.32;
+T_0.31 ;
+    %mov 85, 2, 11;
+T_0.32 ;
+    %mov 73, 85, 11; Move signal select into place
+    %ix/load 1, 31, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_0.33, 4;
+    %load/x1p 85, v00F508A8_0, 1;
+    %jmp T_0.34;
+T_0.33 ;
+    %mov 85, 2, 1;
+T_0.34 ;
+    %mov 84, 85, 1; Move signal select into place
+    %mov 41, 73, 12;
+    %mov 53, 0, 20;
+    %jmp/0  T_0.25, 8;
+ ; End of false expr.
+    %blend  9, 41, 32; Condition unknown.
+    %jmp  T_0.26;
+T_0.25 ;
+    %mov 9, 41, 32; Return false value
+T_0.26 ;
+    %set/v v00F50900_0, 9, 32;
+    %load/v 8, v00F50A08_0, 3;
+    %cmpi/u 8, 0, 3;
+    %jmp/1 T_0.35, 6;
+    %cmpi/u 8, 1, 3;
+    %jmp/1 T_0.36, 6;
+    %cmpi/u 8, 2, 3;
+    %jmp/1 T_0.37, 6;
+    %cmpi/u 8, 3, 3;
+    %jmp/1 T_0.38, 6;
+    %cmpi/u 8, 4, 3;
+    %jmp/1 T_0.39, 6;
+    %set/v v00F509B0_0, 0, 32;
+    %jmp T_0.41;
+T_0.35 ;
+    %load/v 8, v00F50900_0, 32;
+    %set/v v00F509B0_0, 8, 32;
+    %jmp T_0.41;
+T_0.36 ;
+    %load/v 8, v00F50A60_0, 32;
+    %set/v v00F509B0_0, 8, 32;
+    %jmp T_0.41;
+T_0.37 ;
+    %load/v 8, v00F50AB8_0, 32;
+    %set/v v00F509B0_0, 8, 32;
+    %jmp T_0.41;
+T_0.38 ;
+    %load/v 8, v01069368_0, 32;
+    %set/v v00F509B0_0, 8, 32;
+    %jmp T_0.41;
+T_0.39 ;
+    %load/v 8, v00F50958_0, 32;
+    %set/v v00F509B0_0, 8, 32;
+    %jmp T_0.41;
+T_0.41 ;
+    %jmp T_0;
+    .thread T_0, $push;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Sign_Zero_Extend.v";

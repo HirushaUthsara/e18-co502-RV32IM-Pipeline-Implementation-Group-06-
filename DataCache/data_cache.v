@@ -1,22 +1,35 @@
 `timescale 1ns/100ps
 
 module DATA_CACHE (
-    input CLK,
-    input RESET,
-    input MEM_READ,                            // memory MEM_READ signal coming from CPU
-    input MEM_WRITE,                           // memory MEM_WRITE signal coming from CPU
-    input [31:0] MEM_ADDRESS,                  // memory MEM_ADDRESS coming from ALU
-    input [31:0] DATA_IN,                      // data coming from register file
-    input MEM_BUSYWAIT,                        // Signal coming from data memory indicating memory is busy or not
-    input [127:0] MEM_READ_OUT,                // Newly fetched data word from memory
-    output reg[31:0] CACHE_READ_OUT,           // Data blocks, MEM_READ asynchronously according to the offset from the cache to send to register file
-    output reg MEM_MEM_READ, MEM_MEM_WRITE,    // Send MEM_MEM_READ, MEM_MEM_WRITE signals to data memory indicating memory is busy or not MEM_READing & writing
-    output reg BUSYWAIT,                       // Send signal to stall the CPU on a memory MEM_READ/MEM_WRITE instruction
-    output reg [27:0] MEM_BLOCK_ADDR,          // Send block MEM_ADDRESS to data memory to fetch data words
-    output reg [127:0] MEM_WRITE_OUT           // Send data word to MEM_WRITE to data memory
+    CLK,
+    RESET,
+    MEM_READ,
+    MEM_WRITE,
+    MEM_ADDRESS,
+    DATA_IN,
+    MEM_BUSYWAIT, 
+    MEM_READ_OUT,
+    CACHE_READ_OUT,
+    READ,
+    WRITE,
+    BUSYWAIT,
+    BLOCK_ADDR,
+    WRITE_OUT    
 );
     
-    
+    input CLK;
+    input RESET;
+    input MEM_READ;                            // memory MEM_READ signal coming from CPU
+    input MEM_WRITE;                           // memory MEM_WRITE signal coming from CPU
+    input [31:0] MEM_ADDRESS;                  // memory MEM_ADDRESS coming from ALU
+    input [31:0] DATA_IN;                      // data coming from register file
+    input MEM_BUSYWAIT;                        // Signal coming from data memory indicating memory is busy or not
+    input [127:0] MEM_READ_OUT;                // Newly fetched data word from memory
+    output reg[31:0] CACHE_READ_OUT;           // Data blocks, MEM_READ asynchronously according to the offset from the cache to send to register file
+    output reg READ, WRITE;    // Send MEM_MEM_READ, MEM_MEM_WRITE signals to data memory indicating memory is busy or not MEM_READing & writing
+    output reg BUSYWAIT;                       // Send signal to stall the CPU on a memory MEM_READ/MEM_WRITE instruction
+    output reg [27:0] BLOCK_ADDR;          // Send block MEM_ADDRESS to data memory to fetch data words
+    output reg [127:0] WRITE_OUT;           // Send data word to MEM_WRITE to data memory
 
     reg CACHE_VALID [7:0];              // 8 Registers to store 1 bit valid for each data block
     reg CACHE_DIRTY [7:0];              // 8 Registers to store 1 bit dirty for each data block
@@ -192,10 +205,10 @@ end
             IDLE:
             begin
 
-                MEM_MEM_READ = 0;
-                MEM_MEM_WRITE = 0;
-                MEM_BLOCK_ADDR = 6'dx;
-               MEM_WRITE_OUT  = 32'dx;
+                READ = 0;
+                WRITE = 0;
+                BLOCK_ADDR = 6'dx;
+                WRITE_OUT  = 32'dx;
                 BUSYWAIT = 0;
 
             end
@@ -204,10 +217,10 @@ end
             MEM_MEM_READ_STATE: 
             begin
 
-                MEM_MEM_READ = 1;                       // Enable 'MEM_MEM_READ' to send to data memory to assert 'MEM_BUSYWAIT' in order to stall the CPU
-                MEM_MEM_WRITE = 0;
-                MEM_BLOCK_ADDR = {MEM_ADDRESS[7:2]};       // Derive block MEM_ADDRESS from the MEM_ADDRESS coming from ALU to send to data memory
-               MEM_WRITE_OUT  = 32'dx;
+                READ = 1;                       // Enable 'MEM_MEM_READ' to send to data memory to assert 'MEM_BUSYWAIT' in order to stall the CPU
+                WRITE = 0;
+                BLOCK_ADDR = {MEM_ADDRESS[7:2]};       // Derive block MEM_ADDRESS from the MEM_ADDRESS coming from ALU to send to data memory
+                WRITE_OUT  = 32'dx;
 
             end
             
@@ -215,10 +228,10 @@ end
             MEM_MEM_WRITE_STATE: 
             begin
 
-                MEM_MEM_READ = 0;
-                MEM_MEM_WRITE = 1;                      // Enable 'MEM_MEM_WRITE' to send to data memory to assert 'MEM_BUSYWAIT' in order to stall the CPU
-                MEM_BLOCK_ADDR = {TAG,index};   // Derive block MEM_ADDRESS to send to data memory to store a existing cache data word
-                  MEM_WRITE_OUT  = DATA;               // Getting existing cache data word corresponding to index
+                READ = 0;
+                WRITE = 1;                      // Enable 'MEM_MEM_WRITE' to send to data memory to assert 'MEM_BUSYWAIT' in order to stall the CPU
+                BLOCK_ADDR = {TAG,index};   // Derive block MEM_ADDRESS to send to data memory to store a existing cache data word
+                WRITE_OUT  = DATA;               // Getting existing cache data word corresponding to index
 
             end
 
@@ -226,10 +239,10 @@ end
             CACHE_UPDATE:
             begin
 
-                MEM_MEM_READ = 0;
-                MEM_MEM_WRITE = 0;
-                MEM_BLOCK_ADDR = 6'dx;
-                MEM_WRITE_OUT  = 32'dx;
+                READ = 0;
+                WRITE = 0;
+                BLOCK_ADDR = 6'dx;
+                WRITE_OUT  = 32'dx;
 
                 #1
                 CACHE_DATA[index] = MEM_READ_OUT;    // Update current cache data word with newly fetched data from memory
