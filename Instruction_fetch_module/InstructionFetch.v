@@ -3,6 +3,7 @@
 module Instructionfetch (
     CLK,
     RESET,
+    Instmem_busywait,
     Datamem_busywait,
     JumpBranch,
     PC,
@@ -15,14 +16,14 @@ module Instructionfetch (
 // defining the output reg 
 output reg [31:0] PC, PC_Four, PCMUX;
 // defining the input wires
-input wire  CLK, RESET, Datamem_busywait, JumpBranch;
+input wire  CLK, RESET, Instmem_busywait, Datamem_busywait, JumpBranch;
 input wire [31:0] JumpBranch_PC, PCvalue;
 
 // defining the busywait signal
 wire busywait;
 
 // OR operation with busywait signal and store the value to the busywait signal
-or(busywait, Datamem_busywait);
+or(busywait, Datamem_busywait, Instmem_busywait);
 
 // when reset happen then PC-4
 always @(RESET) begin
