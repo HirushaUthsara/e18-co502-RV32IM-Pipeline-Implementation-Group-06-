@@ -1,7 +1,7 @@
 `timescale 1ns/100ps
 
 // Define a module called "PC"
-module PC(CLOCK, RESET, NEXTPC, PC, BUSYWAIT);
+module PC(PC, NEXTPC, RESET, CLOCK, BUSYWAIT);
 
 // Declare inputs and outputs of the module
     input CLOCK, RESET, BUSYWAIT;

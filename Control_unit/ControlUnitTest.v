@@ -76,6 +76,6 @@ module CONTROL_UNIT_TEST;
         assert(WRITEENABLE === 1'b1);
 
         // Test case 4: S-type instruction
-        INSTRUCTION = 32
+        INSTRUCTION = 32;
     end
 endmodule
