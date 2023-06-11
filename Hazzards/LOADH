@@ -1,0 +1,72 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 10;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_01108698 .scope module, "load_use_hazard_unit" "load_use_hazard_unit" 2 3;
+ .timescale -9 -10;
+L_01103678/d .functor XOR 5, C4<zzzzz>, C4<zzzzz>, C4<00000>, C4<00000>;
+L_01103678 .delay (10,10,10) L_01103678/d;
+L_00F61850/d .functor XOR 5, C4<zzzzz>, C4<zzzzz>, C4<00000>, C4<00000>;
+L_00F61850 .delay (10,10,10) L_00F61850/d;
+L_00F619C0/d .functor OR 1, L_00F61568, L_00F61460, C4<0>, C4<0>;
+L_00F619C0 .delay (10,10,10) L_00F619C0/d;
+v01103300_0 .net "IFstage_Rs1", 4 0, C4<zzzzz>; 0 drivers
+v01103358_0 .net "IFstage_Rs2", 4 0, C4<zzzzz>; 0 drivers
+v011033B0_0 .net "alu_rs1_compare", 0 0, L_00F61568; 1 drivers
+v0110EE70_0 .net "alu_rs1_xor_wire", 4 0, L_01103678; 1 drivers
+v0110EEC8_0 .net "alu_rs2_compare", 0 0, L_00F61460; 1 drivers
+v0110EF20_0 .net "alu_rs2_xor_wire", 4 0, L_00F61850; 1 drivers
+v0110EF78_0 .net "bubble", 0 0, L_00F619C0; 1 drivers
+v00F60E60_0 .var "bubble_enable", 0 0;
+v00F60EB8_0 .net "clk", 0 0, C4<z>; 0 drivers
+v00F60F10_0 .var "forward_from_wb_stage_to_rs1", 0 0;
+v00F60F68_0 .var "forward_from_wb_stage_to_rs2", 0 0;
+v00F60FC0_0 .net "load_signal", 0 0, C4<z>; 0 drivers
+v00F61250_0 .net "rd_mem_stage", 4 0, C4<zzzzz>; 0 drivers
+v00F61040_0 .net "reset", 0 0, C4<z>; 0 drivers
+v00F61510_0 .net "rs1_alu_stage", 4 0, C4<zzzzz>; 0 drivers
+v00F61098_0 .net "rs2_alu_stage", 4 0, C4<zzzzz>; 0 drivers
+E_01108B90 .event edge, v00F61040_0;
+E_01108AF0 .event posedge, v00F60EB8_0;
+L_00F61568 .delay (10,10,10) L_00F61568/d;
+L_00F61568/d .reduce/and L_01103678;
+L_00F61460 .delay (10,10,10) L_00F61460/d;
+L_00F61460/d .reduce/and L_00F61850;
+    .scope S_01108698;
+T_0 ;
+    %wait E_01108AF0;
+    %delay 10, 0;
+    %load/v 8, v00F60FC0_0, 1;
+    %jmp/0xz  T_0.0, 8;
+    %load/v 8, v011033B0_0, 1;
+    %set/v v00F60F10_0, 8, 1;
+    %load/v 8, v0110EEC8_0, 1;
+    %set/v v00F60F68_0, 8, 1;
+    %load/v 8, v0110EF78_0, 1;
+    %set/v v00F60E60_0, 8, 1;
+    %jmp T_0.1;
+T_0.0 ;
+    %set/v v00F60F10_0, 0, 1;
+    %set/v v00F60F68_0, 0, 1;
+    %set/v v00F60E60_0, 0, 1;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_01108698;
+T_1 ;
+    %wait E_01108B90;
+    %load/v 8, v00F61040_0, 1;
+    %jmp/0xz  T_1.0, 8;
+    %set/v v00F60F10_0, 0, 1;
+    %set/v v00F60F68_0, 0, 1;
+    %set/v v00F60E60_0, 0, 1;
+T_1.0 ;
+    %jmp T_1;
+    .thread T_1, $push;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "Load_hazzard.v";
