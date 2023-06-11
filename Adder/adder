@@ -4,31 +4,47 @@
 :vpi_module "system";
 :vpi_module "v2005_math";
 :vpi_module "va_math";
-S_001F3AE8 .scope module, "adder" "adder" 2 3;
+S_00FA2A38 .scope module, "adder" "adder" 2 3;
  .timescale -9 -10;
-v001F52F0_0 .net "IN1", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
-v001F5220_0 .net "IN2", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
-v001F2FA0_0 .var "OUT", 31 0;
-E_001F4980 .event edge, v001F52F0_0, v001F5220_0;
-S_001F3B70 .scope module, "adder_4" "adder_4" 2 14;
+v00FA2678_0 .net "IN1", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010C44D0_0 .net "IN2", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
+v010C4528_0 .var "OUT", 31 0;
+E_010C4920 .event edge, v00FA2678_0, v010C44D0_0;
+S_00FA3340 .scope module, "adder_4_tb" "adder_4_tb" 2 24;
  .timescale -9 -10;
-v001F2FF8_0 .net "IN1", 31 0, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>; 0 drivers
-v001F3050_0 .net "OUT", 31 0, L_001FEAC8; 1 drivers
-v001F30A8_0 .net *"_s0", 31 0, C4<00000000000000000000000000000100>; 1 drivers
-L_001FEAC8 .delay (10,10,10) L_001FEAC8/d;
-L_001FEAC8/d .arith/sum 32, C4<zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz>, C4<00000000000000000000000000000100>;
-    .scope S_001F3AE8;
+v010C3B98_0 .var "IN1", 31 0;
+v010C2FA0_0 .net "OUT", 31 0, L_010C2FF8; 1 drivers
+S_00FA2BD0 .scope module, "adder" "adder_4" 2 29, 2 14, S_00FA3340;
+ .timescale -9 -10;
+v010C4580_0 .net "IN1", 31 0, v010C3B98_0; 1 drivers
+v010C3AE8_0 .alias "OUT", 31 0, v010C2FA0_0;
+v010C3B40_0 .net *"_s0", 31 0, C4<00000000000000000000000000000100>; 1 drivers
+L_010C2FF8 .delay (10,10,10) L_010C2FF8/d;
+L_010C2FF8/d .arith/sum 32, v010C3B98_0, C4<00000000000000000000000000000100>;
+    .scope S_00FA2A38;
 T_0 ;
-    %wait E_001F4980;
+    %wait E_010C4920;
     %delay 20, 0;
-    %load/v 8, v001F52F0_0, 32;
-    %load/v 40, v001F5220_0, 32;
+    %load/v 8, v00FA2678_0, 32;
+    %load/v 40, v010C44D0_0, 32;
     %add 8, 40, 32;
-    %set/v v001F2FA0_0, 8, 32;
+    %set/v v010C4528_0, 8, 32;
     %jmp T_0;
     .thread T_0, $push;
+    .scope S_00FA3340;
+T_1 ;
+    %movi 8, 10, 32;
+    %set/v v010C3B98_0, 8, 32;
+    %delay 100, 0;
+    %vpi_call 2 34 "$display", "IN1 : %d\011OUT : %d", v010C3B98_0, v010C2FA0_0;
+    %movi 8, 128, 32;
+    %set/v v010C3B98_0, 8, 32;
+    %delay 100, 0;
+    %vpi_call 2 37 "$display", "IN1 : %d\011OUT : %d", v010C3B98_0, v010C2FA0_0;
+    %end;
+    .thread T_1;
 # The file index is used to find the file name in the following table.
 :file_names 3;
     "N/A";
     "<interactive>";
-    "ADDER.v";
+    "Adder.v";

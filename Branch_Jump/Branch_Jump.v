@@ -71,3 +71,79 @@ endmodule
 /*
 In a branch module, the REG_FLUSH signal is typically used to indicate that a pipeline flush is required due to a branch instruction. When a branch instruction is encountered, it may change the control flow of the program, causing the instructions in the pipeline to become invalid. In such cases, a pipeline flush is necessary to discard the incorrect instructions and fetch the correct instructions based on the branch target.
 */
+
+
+
+
+module BRANCH_JUMP_TB;
+
+    // Declare signals for test bench
+    reg RESET;
+    reg [31:0] BRANCH_ADDR, ALU_JUMP_IMM;
+    reg [2:0] FUNCTION3;
+    reg BRANCH, JUMP, EQUAL, SIGNED_LT, UNSIGNED_LT;
+    wire PCMUX, REG_FLUSH;
+    wire [31:0] BRANCH_JUMP_OUT;
+
+    // Instantiate the module under test
+    BRANCH_JUMP dut (
+        .RESET(RESET),
+        .BRANCH_ADDR(BRANCH_ADDR),
+        .ALU_JUMP_IMM(ALU_JUMP_IMM),
+        .FUNCTION3(FUNCTION3),
+        .BRANCH(BRANCH),
+        .JUMP(JUMP),
+        .EQUAL(EQUAL),
+        .SIGNED_LT(SIGNED_LT),
+        .UNSIGNED_LT(UNSIGNED_LT),
+        .PCMUX(PCMUX),
+        .REG_FLUSH(REG_FLUSH),
+        .BRANCH_JUMP_OUT(BRANCH_JUMP_OUT)
+    );
+
+    // Clock generation
+    reg clk;
+    always #5 clk = ~clk;
+
+    // Test stimulus
+    initial begin
+        // Initialize inputs
+        RESET = 0;
+        BRANCH_ADDR = 32'h12345678;
+        ALU_JUMP_IMM = 32'h98765432;
+        FUNCTION3 = 3'b101;
+        BRANCH = 1'b0;
+        JUMP = 1'b0;
+        EQUAL = 1'b1;
+        SIGNED_LT = 1'b0;
+        UNSIGNED_LT = 1'b0;
+
+        // Apply reset
+        RESET = 1;
+        #10 RESET = 0;
+
+        // Test case 1: Branching
+        #20 BRANCH = 1'b1;
+        #5;
+        // Add your assertions or checks here for the expected outputs
+
+        // Test case 2: Jumping
+        #20 JUMP = 1'b1;
+        #5;
+        // Add your assertions or checks here for the expected outputs
+
+        // Test case 3: No branching or jumping
+        #20;
+        // Add your assertions or checks here for the expected outputs
+
+        // Add more test cases as needed
+
+        $finish; // End simulation
+    end
+
+    // Monitor for displaying the outputs
+    always @(posedge clk) begin
+        $display("BRANCH_JUMP_OUT = %h, PCMUX = %b, REG_FLUSH = %b", BRANCH_JUMP_OUT, PCMUX, REG_FLUSH);
+    end
+
+endmodule

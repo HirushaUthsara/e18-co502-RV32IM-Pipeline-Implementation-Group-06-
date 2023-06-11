@@ -3,13 +3,14 @@
 // module for the first pipeline register
 module PIPEREG1(CLK, 
             RESET, 
+			INSTRIN,
             NEXTPC, // next program counter value
-            PC,  
-            INSTRIN, 
-            BUSYWAIT, // Input signal indicating whether the pipeline register should wait before updating its outputs
-            PCOUT_NEXT, 
-            PCOUT, 
-            INSTROUT);
+            PC, 
+			INSTROUT, 
+			PCOUT_NEXT, 
+			PCOUT,
+            BUSYWAIT // Input signal indicating whether the pipeline register should wait before updating its outputs
+            );
 
     input [31:0] NEXTPC, PC, INSTRIN;
     input CLK, RESET, BUSYWAIT;
