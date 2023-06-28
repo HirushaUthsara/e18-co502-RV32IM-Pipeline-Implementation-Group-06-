@@ -1,0 +1,310 @@
+$date
+	Wed Jun 28 08:25:32 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module tb_OneCounterPredictorTest $end
+$var wire 1 ! PREDICTION $end
+$var wire 16 " MISSES [15:0] $end
+$var reg 3 # ADDR [2:0] $end
+$var reg 1 $ CLOCK $end
+$var reg 1 % INIT $end
+$var reg 1 & OUTCOME $end
+$scope module uut $end
+$var wire 3 ' ADDR [2:0] $end
+$var wire 1 $ CLOCK $end
+$var wire 1 % INIT $end
+$var wire 1 & OUTCOME $end
+$var wire 1 ! PREDICTION $end
+$var wire 16 ( miss_in [15:0] $end
+$var wire 1 ) demout1 $end
+$var wire 1 * demout0 $end
+$var wire 1 + demmiss1 $end
+$var wire 1 , demmiss0 $end
+$var wire 3 - addr_out [2:0] $end
+$var wire 1 . PREDICTION_wire $end
+$var wire 16 / MISSES [15:0] $end
+$var wire 1 0 B $end
+$var wire 1 1 A $end
+$scope module comp $end
+$var wire 3 2 ADDR [2:0] $end
+$var wire 3 3 ADDR_W [2:0] $end
+$var wire 1 $ CLOCK $end
+$var wire 1 % INIT $end
+$var wire 1 4 MISS $end
+$var wire 1 & OUTCOME $end
+$var wire 1 . PREDICTION $end
+$upscope $end
+$scope module countM $end
+$var wire 1 $ CLOCK $end
+$var wire 1 % INIT $end
+$var wire 1 5 MISS $end
+$var wire 16 6 MISSES [15:0] $end
+$var reg 16 7 temp [15:0] $end
+$upscope $end
+$scope module demux $end
+$var wire 3 8 ADDR [2:0] $end
+$var wire 1 9 MISS $end
+$var wire 1 & OUTCOME $end
+$var wire 1 ) out1 $end
+$var wire 1 * out0 $end
+$var wire 1 + miss1 $end
+$var wire 1 , miss0 $end
+$upscope $end
+$scope module firstCount $end
+$var wire 1 $ CLOCK $end
+$var wire 1 % INIT $end
+$var wire 1 , MISS $end
+$var wire 1 * OUTCOME $end
+$var wire 1 1 PREDICTION $end
+$var reg 1 : count $end
+$upscope $end
+$scope module mux $end
+$var wire 1 1 A $end
+$var wire 3 ; ADDR [2:0] $end
+$var wire 1 0 B $end
+$var reg 1 . OUTPUT $end
+$upscope $end
+$scope module secondCount $end
+$var wire 1 $ CLOCK $end
+$var wire 1 % INIT $end
+$var wire 1 + MISS $end
+$var wire 1 ) OUTCOME $end
+$var wire 1 0 PREDICTION $end
+$var reg 1 < count $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+x<
+b0 ;
+x:
+09
+b0 8
+bx 7
+bx 6
+05
+04
+b0 3
+b0 2
+x1
+x0
+bx /
+0.
+b0 -
+0,
+0+
+0*
+0)
+b0 (
+b0 '
+0&
+0%
+0$
+b0 #
+bx "
+0!
+$end
+#5
+1$
+#10
+0$
+#15
+b0 "
+b0 /
+b0 6
+b0 7
+00
+0<
+01
+0:
+1$
+1%
+#20
+0$
+#25
+1,
+15
+19
+b1 (
+14
+1*
+1$
+1&
+b1 -
+b1 3
+b1 #
+b1 '
+b1 2
+b1 8
+b1 ;
+0%
+#30
+0$
+#35
+05
+09
+b0 (
+04
+1!
+1.
+b1 "
+b1 /
+b1 6
+b1 7
+10
+1<
+0*
+0,
+1)
+0+
+1$
+b10 -
+b10 3
+b10 #
+b10 '
+b10 2
+b10 8
+b10 ;
+#40
+0$
+#45
+0)
+0!
+0.
+1$
+0&
+b1 -
+b1 3
+b1 #
+b1 '
+b1 2
+b1 8
+b1 ;
+#50
+0$
+#55
+1$
+#60
+0$
+#65
+1$
+#70
+0$
+#75
+1+
+15
+19
+b1 (
+14
+1!
+1.
+1$
+b10 -
+b10 3
+b10 #
+b10 '
+b10 2
+b10 8
+b10 ;
+#80
+0$
+#85
+05
+09
+b0 (
+04
+11
+1:
+b10 "
+b10 /
+b10 6
+b10 7
+1*
+0,
+0+
+1!
+1.
+1$
+1&
+b1 -
+b1 3
+b1 #
+b1 '
+b1 2
+b1 8
+b1 ;
+#90
+0$
+#95
+1$
+#100
+0$
+#105
+1,
+15
+19
+b1 (
+14
+0*
+1$
+0&
+#110
+0$
+#115
+0,
+05
+09
+b0 (
+04
+0!
+0.
+b11 "
+b11 /
+b11 6
+b11 7
+01
+0:
+1$
+#120
+0$
+#125
+1)
+1!
+1.
+1$
+1&
+b10 -
+b10 3
+b10 #
+b10 '
+b10 2
+b10 8
+b10 ;
+#130
+0$
+#135
+0)
+0!
+0.
+1$
+0&
+b1 -
+b1 3
+b1 #
+b1 '
+b1 2
+b1 8
+b1 ;
+#140
+0$
+#145
+1$
+#150
+0$
